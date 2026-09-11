@@ -1,0 +1,59 @@
+name: Patch BrainFacts 3D Link
+
+on:
+  push:
+    paths:
+      - '.github/workflows/patch-brainfacts-link.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install PyMuPDF
+        run: python -m pip install --quiet pymupdf
+
+      - name: Patch only the BrainFacts link in the PDF
+        shell: bash
+        run: |
+          python - <<'PY'
+          import fitz
+          from pathlib import Path
+
+          pdf = Path('multimedia farsi - ویراستاری علمی.pdf')
+          tmp = pdf.with_name(pdf.stem + '.tmp.pdf')
+          target = 'https://saaeiddev.github.io/Multimedia-Article/brainfacts-3d.html'
+
+          doc = fitz.open(pdf)
+          page = doc[32]
+          changed = 0
+          for link in page.get_links():
+              uri = link.get('uri', '')
+              if uri and 'brainfacts.org' in uri.lower():
+                  link['uri'] = target
+                  page.update_link(link)
+                  changed += 1
+
+          if changed != 1:
+              doc.close()
+              raise SystemExit(f'Expected exactly 1 BrainFacts link on page 33, found {changed}')
+
+          doc.save(tmp, garbage=4, deflate=True)
+          doc.close()
+          tmp.replace(pdf)
+          print(f'Updated {changed} BrainFacts link to {target}')
+          PY
+
+      - name: Commit patched PDF
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- 'multimedia farsi - ویراستاری علمی.pdf'
+          git commit -m "Link BrainFacts case study to embedded 3D Brain"
+          git push
