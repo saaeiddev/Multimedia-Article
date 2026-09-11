@@ -61,6 +61,7 @@
       z-index:3;
     }
     .screen{
+      position:relative;
       width:100%;
       height:100%;
       overflow:hidden;
@@ -69,6 +70,60 @@
       box-shadow:0 0 0 1px rgba(0,0,0,.8),inset 0 0 0 1px rgba(255,255,255,.06);
     }
     .frame{width:100%;height:100%;border:0;display:block;background:#596570}
+    .win11-taskbar{
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      height:42px;
+      z-index:6;
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      align-items:center;
+      padding:0 10px;
+      direction:ltr;
+      background:linear-gradient(180deg,rgba(248,251,255,.66),rgba(229,237,247,.58));
+      border-top:1px solid rgba(255,255,255,.76);
+      box-shadow:0 -1px 14px rgba(44,63,82,.12),inset 0 1px 0 rgba(255,255,255,.42);
+      backdrop-filter:blur(22px) saturate(165%);
+      -webkit-backdrop-filter:blur(22px) saturate(165%);
+      pointer-events:none;
+    }
+    .taskbar-icons{
+      grid-column:2;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:7px;
+    }
+    .taskbar-icon{
+      width:31px;
+      height:31px;
+      border-radius:8px;
+      display:grid;
+      place-items:center;
+      background:rgba(255,255,255,.13);
+      filter:drop-shadow(0 1px 1px rgba(37,55,73,.16));
+    }
+    .taskbar-icon svg{width:21px;height:21px;display:block}
+    .taskbar-icon.browser svg{width:23px;height:23px}
+    .taskbar-icon.folder svg{width:23px;height:23px}
+    .taskbar-tray{
+      grid-column:3;
+      justify-self:end;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      color:#1e2832;
+      font-family:Segoe UI,Tahoma,sans-serif;
+      font-size:9px;
+      line-height:1.05;
+      text-align:right;
+      white-space:nowrap;
+    }
+    .tray-icons{display:flex;align-items:center;gap:4px}
+    .tray-icons svg{width:13px;height:13px;display:block}
+    .taskbar-clock{min-width:34px}
     .hinge{
       position:relative;
       width:88%;
@@ -122,6 +177,12 @@
       .laptop{width:96vw}
       .display-shell{height:calc(100vh - 122px);min-height:300px;padding:10px 10px 12px;border-radius:14px 14px 7px 7px;transform:rotateX(-1deg)}
       .camera{top:3px;width:4px;height:4px}
+      .win11-taskbar{height:34px;padding:0 6px}
+      .taskbar-icons{gap:3px}
+      .taskbar-icon{width:26px;height:26px;border-radius:6px}
+      .taskbar-icon svg,.taskbar-icon.browser svg,.taskbar-icon.folder svg{width:18px;height:18px}
+      .taskbar-tray{gap:4px;font-size:7px}
+      .tray-icons svg{width:10px;height:10px}
       .base{height:34px}
       .hinge{height:7px}
     }
@@ -142,6 +203,31 @@
         <span class="camera" aria-hidden="true"></span>
         <div class="screen">
           <iframe class="frame" src="https://docs.google.com/gview?embedded=true&url=https%3A%2F%2Fsaaeiddev.github.io%2FMultimedia-Article%2Fmultimedia%2520farsi%2520-%2520%25D9%2588%25DB%258C%25D8%25B1%25D8%25A7%25D8%25B3%25D8%25AA%25D8%25A7%25D8%25B1%DB%8C%2520%25D8%25B9%25D9%2584%25D9%2585%DB%8C.pdf" title="کتاب چندرسانه‌ای"></iframe>
+          <div class="win11-taskbar" aria-hidden="true">
+            <div></div>
+            <div class="taskbar-icons">
+              <span class="taskbar-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#087cd5" d="M2.8 3.2 10.7 2v8.9H2.8zm9.1-1.4L21.2.5v10.4h-9.3zM2.8 12.1h7.9V21l-7.9-1.1zm9.1 0h9.3v10.4l-9.3-1.3z"/></svg>
+              </span>
+              <span class="taskbar-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.2" fill="none" stroke="#313943" stroke-width="2.2"/><path d="m15.1 15.1 5 5" stroke="#313943" stroke-width="2.2" stroke-linecap="round"/></svg>
+              </span>
+              <span class="taskbar-icon folder">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#f2bf39" d="M2.4 5.4c0-1 .8-1.8 1.8-1.8h5l2 2.3h8.6c1 0 1.8.8 1.8 1.8v9.7c0 1-.8 1.8-1.8 1.8H4.2c-1 0-1.8-.8-1.8-1.8z"/><path fill="#ffd65a" d="M2.4 8.1h19.2l-2 10.9H4.2c-1.1 0-1.9-1-1.7-2.1z"/></svg>
+              </span>
+              <span class="taskbar-icon browser">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="edgeBlue" x1="3" y1="20" x2="20" y2="5"><stop stop-color="#0aa0f6"/><stop offset="1" stop-color="#0878d7"/></linearGradient></defs><path fill="url(#edgeBlue)" d="M21.2 13.6c-.8 4.7-4.9 8.1-9.6 8.1-5.3 0-9.6-4.2-9.6-9.4 0-4.8 3.7-8.8 8.5-9.3 3.8-.4 7.4 1.5 9.3 4.8-2.1-1.5-5.2-1.6-7.4-.1-2 1.4-2.8 4-1.9 6.1 1.2 2.8 4.6 4 7.3 2.7 1.5-.7 2.6-1.7 3.4-2.9z"/><path fill="#18c6ab" d="M4.2 9.2c1.7-3 5.2-4.5 8.5-3.6 2.4.7 4.4 2.6 5.1 5-1.8-1-4-1-5.8 0-2 1.1-3.1 3.4-2.7 5.6-3.4-.5-5.8-3.4-5.7-6.7z" opacity=".95"/></svg>
+              </span>
+            </div>
+            <div class="taskbar-tray">
+              <span class="tray-icons">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5a11.5 11.5 0 0 1 16 0M7 15a7.3 7.3 0 0 1 10 0m-6.7 3.4a2.5 2.5 0 0 1 3.4 0" fill="none" stroke="#27313b" stroke-width="1.8" stroke-linecap="round"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9v6h3l5 4V5L8 9zm10.2 1.3a3.2 3.2 0 0 1 0 3.4m2.4-5.8a7 7 0 0 1 0 8.2" fill="none" stroke="#27313b" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="16" height="10" rx="2" fill="none" stroke="#27313b" stroke-width="1.7"/><path d="M20 10v4" stroke="#27313b" stroke-width="1.7" stroke-linecap="round"/><rect x="5.5" y="9.5" width="10" height="5" rx="1" fill="#27313b"/></svg>
+              </span>
+              <span class="taskbar-clock">10:45<br>9/11/2026</span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="hinge" aria-hidden="true"></div>
