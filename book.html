@@ -186,6 +186,195 @@
       .base{height:34px}
       .hinge{height:7px}
     }
+
+    /* Mobile only: present the existing PDF inside an iPhone-style iOS 27 glass interface. */
+    body.mobile-device .stage{
+      padding:10px 12px 16px;
+      perspective:none;
+      background:
+        radial-gradient(circle at 25% 18%,rgba(118,193,255,.32),transparent 30%),
+        radial-gradient(circle at 78% 72%,rgba(205,161,255,.24),transparent 34%),
+        linear-gradient(160deg,#eef7ff 0%,#f8f3ff 48%,#e6f2ff 100%);
+    }
+    body.mobile-device .laptop{
+      position:relative;
+      width:min(88vw,calc((100dvh - 92px)*.462),390px);
+      max-width:390px;
+      filter:drop-shadow(0 28px 36px rgba(33,49,67,.34));
+      transform:none;
+    }
+    body.mobile-device .laptop::before,
+    body.mobile-device .laptop::after{
+      content:"";
+      position:absolute;
+      z-index:-1;
+      width:4px;
+      border-radius:4px;
+      background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(160,177,194,.72));
+      box-shadow:0 1px 3px rgba(33,43,56,.22);
+    }
+    body.mobile-device .laptop::before{
+      left:-3px;
+      top:24%;
+      height:74px;
+      box-shadow:0 -88px 0 rgba(190,204,218,.78),0 1px 3px rgba(33,43,56,.22);
+    }
+    body.mobile-device .laptop::after{
+      right:-3px;
+      top:29%;
+      height:88px;
+    }
+    body.mobile-device .display-shell{
+      width:100%;
+      height:auto;
+      min-height:0;
+      aspect-ratio:9/19.5;
+      padding:7px;
+      border-radius:52px;
+      overflow:visible;
+      transform:none;
+      background:
+        linear-gradient(145deg,rgba(255,255,255,.84),rgba(215,228,242,.56) 42%,rgba(255,255,255,.74) 72%,rgba(173,192,210,.62));
+      border:1px solid rgba(255,255,255,.92);
+      box-shadow:
+        inset 0 0 0 1px rgba(104,121,138,.35),
+        inset 0 2px 2px rgba(255,255,255,.94),
+        inset 0 -2px 3px rgba(80,95,111,.28),
+        0 2px 0 rgba(255,255,255,.82),
+        0 18px 44px rgba(34,52,72,.22);
+      backdrop-filter:blur(26px) saturate(180%);
+      -webkit-backdrop-filter:blur(26px) saturate(180%);
+    }
+    body.mobile-device .display-shell::after{
+      content:"";
+      position:absolute;
+      inset:2px;
+      border-radius:50px;
+      pointer-events:none;
+      background:linear-gradient(115deg,rgba(255,255,255,.55),transparent 18%,transparent 73%,rgba(255,255,255,.22));
+      mix-blend-mode:screen;
+      opacity:.8;
+      z-index:8;
+    }
+    body.mobile-device .camera{
+      top:14px;
+      left:50%;
+      width:92px;
+      height:27px;
+      transform:translateX(-50%);
+      border-radius:18px;
+      background:linear-gradient(180deg,#050607,#111418);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.05),
+        0 1px 4px rgba(0,0,0,.34);
+      z-index:12;
+    }
+    body.mobile-device .camera::after{
+      content:"";
+      position:absolute;
+      right:10px;
+      top:9px;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      background:#101a28;
+      box-shadow:inset 0 0 2px #256cb2,0 0 2px rgba(70,142,219,.5);
+    }
+    body.mobile-device .screen{
+      width:100%;
+      height:100%;
+      border-radius:45px;
+      overflow:hidden;
+      background:#f4f7fa;
+      box-shadow:
+        0 0 0 1px rgba(15,20,26,.82),
+        inset 0 0 0 1px rgba(255,255,255,.12);
+    }
+    body.mobile-device .screen::before{
+      content:"9:41";
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:50px;
+      z-index:9;
+      direction:ltr;
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      padding:0 22px;
+      color:#101318;
+      font:600 11px/1 -apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif;
+      text-shadow:0 1px 1px rgba(255,255,255,.5);
+      background:linear-gradient(180deg,rgba(255,255,255,.42),rgba(255,255,255,.08));
+      backdrop-filter:blur(16px) saturate(180%);
+      -webkit-backdrop-filter:blur(16px) saturate(180%);
+      pointer-events:none;
+    }
+    body.mobile-device .screen::after{
+      content:"";
+      position:absolute;
+      left:50%;
+      bottom:6px;
+      width:104px;
+      height:4px;
+      transform:translateX(-50%);
+      border-radius:10px;
+      z-index:11;
+      background:rgba(18,21,26,.78);
+      box-shadow:0 0 1px rgba(255,255,255,.4);
+      pointer-events:none;
+    }
+    body.mobile-device .frame{
+      width:100%;
+      height:100%;
+      border:0;
+      display:block;
+      background:#fff;
+    }
+    body.mobile-device .win11-taskbar{
+      left:12px;
+      right:12px;
+      bottom:15px;
+      width:auto;
+      height:47px;
+      padding:0;
+      border:1px solid rgba(255,255,255,.62);
+      border-radius:25px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(135deg,rgba(255,255,255,.54),rgba(219,232,246,.34));
+      box-shadow:
+        0 8px 24px rgba(38,52,69,.18),
+        inset 0 1px 0 rgba(255,255,255,.76),
+        inset 0 -1px 0 rgba(114,133,153,.18);
+      backdrop-filter:blur(24px) saturate(190%);
+      -webkit-backdrop-filter:blur(24px) saturate(190%);
+      overflow:hidden;
+    }
+    body.mobile-device .win11-taskbar::before{
+      content:"‹   Aa   ◉   ↗";
+      direction:ltr;
+      color:rgba(18,44,70,.88);
+      letter-spacing:7px;
+      font:600 17px/1 -apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;
+      text-shadow:0 1px 0 rgba(255,255,255,.72);
+    }
+    body.mobile-device .taskbar-icons,
+    body.mobile-device .taskbar-tray{
+      display:none;
+    }
+    body.mobile-device .hinge,
+    body.mobile-device .base{
+      display:none;
+    }
+
+    @media (max-height:650px){
+      body.mobile-device .bar{height:50px}
+      body.mobile-device .stage{height:calc(100vh - 50px);padding-top:8px;padding-bottom:8px}
+      body.mobile-device .laptop{width:min(78vw,calc((100dvh - 70px)*.462),330px)}
+    }
   </style>
 </head>
 <body>
@@ -234,5 +423,17 @@
       <div class="base" aria-hidden="true"></div>
     </div>
   </main>
+  <script>
+    (function(){
+      var ua=navigator.userAgent||"";
+      var uaMobile=!!(navigator.userAgentData&&navigator.userAgentData.mobile);
+      var mobile=uaMobile||/Android|iPhone|iPod|IEMobile|Opera Mini|Mobile/i.test(ua)||window.matchMedia("(max-width: 820px) and (pointer: coarse)").matches;
+      if(mobile){
+        document.body.classList.add("mobile-device");
+        var device=document.querySelector(".laptop");
+        if(device) device.setAttribute("aria-label","نمایش کتاب روی آیفون با رابط شیشه‌ای iOS 27");
+      }
+    })();
+  </script>
 </body>
 </html>
