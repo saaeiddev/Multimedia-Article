@@ -375,6 +375,14 @@
       body.mobile-device .stage{height:calc(100vh - 50px);padding-top:8px;padding-bottom:8px}
       body.mobile-device .laptop{width:min(78vw,calc((100dvh - 70px)*.462),330px)}
     }
+
+    /* Match the book landing palette; device models and PDF viewer remain untouched. */
+    html,body{background:#090a12;color:#f2f0fa}
+    .bar{background:rgba(15,16,27,.94);border-bottom-color:rgba(175,150,255,.18);color:#f2f0fa;backdrop-filter:blur(18px)}
+    .win{background:linear-gradient(135deg,#826ac7,#82acff)}
+    .hint{color:#9899ac}
+    .stage{background:radial-gradient(ellipse at 52% 20%,rgba(94,63,151,.32),transparent 58%),radial-gradient(ellipse at 82% 82%,rgba(70,113,181,.16),transparent 45%),linear-gradient(180deg,#11111e 0%,#090a12 100%)}
+    body.mobile-device .stage{background:radial-gradient(circle at 25% 18%,rgba(130,172,255,.2),transparent 35%),radial-gradient(circle at 78% 72%,rgba(175,150,255,.22),transparent 39%),linear-gradient(160deg,#11111e 0%,#171326 48%,#090a12 100%)}
   </style>
 </head>
 <body>
