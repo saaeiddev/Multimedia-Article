@@ -281,8 +281,11 @@
       box-shadow:inset 0 0 2px #256cb2,0 0 2px rgba(70,142,219,.5);
     }
     body.mobile-device .screen{
-      width:100%;
-      height:100%;
+      /* Anchor the display to the shell instead of resolving a percentage height against height:auto. */
+      position:absolute;
+      inset:7px;
+      width:auto;
+      height:auto;
       border-radius:45px;
       overflow:hidden;
       background:#f4f7fa;
